@@ -1,0 +1,20 @@
+image:
+  name: registry.opensource.zalan.do/teapot/external-dns
+  tag: v0.5.14                      # At the time of writing 0.5.14 works fine, 0.5.13 & 0.5.12 give an other error
+  pullPolicy: IfNotPresent
+sources:
+  - ingress
+domainFilters:
+  - amordemaria.com               # (optional) Just restrict to this domain
+provider: azure
+logLevel: debug                     # (optional) To see detailed logs
+txtOwnerId: stakater
+registry: txt
+policy: sync
+rbac:
+  create: true
+  apiVersion: v1beta1
+azure:
+  secretName: azure-config-file     # Secret name created above
+extraArgs:
+  azure-resource-group: externaldns  # (Optional)
