@@ -1,15 +1,51 @@
-apiVersion: v1
-# Tipo de fichero que se va a crear.
-kind: Service
-# Aquí van los datos propios del pod como el nombre y los labels que tiene asociados para seleccionarlo
+# apiVersion: v1
+# # Tipo de fichero que se va a crear.
+# kind: Service
+# # Aquí van los datos propios del pod como el nombre y los labels que tiene asociados para seleccionarlo
+# metadata:
+#     name: my-nginx-service
+# # Contiene la especificación del pod
+# spec:
+#     type: LoadBalancer
+#     # En esta propiedad se indican todos los pods que apuntan a este servkice. En este caso, se va a encargar de todos los que tengan el valor "nginx" en el label "app"
+#     selector:
+#         app: my-nginx
+#     ports:
+#       # Indica el puerto en el que se debería de servir este servicio
+#       - port: 80
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-    name: my-nginx-service
-# Contiene la especificación del pod
+  name: hello
 spec:
-    type: LoadBalancer
-    # En esta propiedad se indican todos los pods que apuntan a este servkice. En este caso, se va a encargar de todos los que tengan el valor "nginx" en el label "app"
-    selector:
-        app: my-nginx
-    ports:
-      # Indica el puerto en el que se debería de servir este servicio
-      - port: 80
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - image: gcr.io/google-samples/hello-app:1.0
+        name: hello
+        ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: server.amordemaria.com
+    external-dns.alpha.kubernetes.io/ttl: "30"
+spec:
+  selector:
+    app: hello
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
