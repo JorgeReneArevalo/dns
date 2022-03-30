@@ -58,7 +58,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: nginx-svc
+          name : nginx-svc
           port :
             number: 80
         path: /
