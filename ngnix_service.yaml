@@ -56,9 +56,11 @@ spec:
   rules:
   - host: app.amordemaria.store
     http:
-      paths:
-      - backend:
-          name : nginx-svc
-          port :
-            number: 80
-        path: /
+     paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-svc
+            port:
+              number: 80
