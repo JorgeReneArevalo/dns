@@ -54,10 +54,11 @@ metadata:
     kubernetes.io/ingress.class: nginx
 spec:
   rules:
-  - host: server.example.com
+  - host: app.amordemaria.store
     http:
       paths:
       - backend:
           serviceName: nginx-svc
-          servicePort: 80
+          port :
+            number: 80
         path: /
