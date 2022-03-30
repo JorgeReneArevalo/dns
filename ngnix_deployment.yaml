@@ -39,7 +39,7 @@ kind: Service
 metadata:
   name: hello
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: server.amordemaria.com
+    external-dns.alpha.kubernetes.io/hostname: server.amordemaria.store
     external-dns.alpha.kubernetes.io/ttl: "30"
 spec:
   selector:
