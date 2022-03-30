@@ -49,3 +49,12 @@ spec:
             name: nginx-svc
             port:
               number: 80
+
+
+# // {
+# //     "tenantId": "d6438082-eb98-4c3f-8397-5dbdfe4036fd",
+# //     "subscriptionId": "19aae2bc-35bf-4b99-b57e-075e370ff8b6",
+# //     "resourceGroup": "tesis-rg",
+# //     "aadClientId": "d6438082-eb98-4c3f-8397-5dbdfe4036fd",
+# //     "aadClientSecret": "yB4DfZJ0QGtRRfkpT-loq6fjkuDF-8F_9Y"
+# // }
