@@ -49,13 +49,14 @@ spec:
       serviceAccountName: external-dns
       containers:
       - name: external-dns
-        image: registry.opensource.zalan.do/teapot/external-dns:latest
+        image: k8s.gcr.io/external-dns/external-dns:v0.7.6
         args:
         - --source=service
         - --source=ingress
         - --domain-filter=amordemaria.store # (optional) limit to only example.com domains; change to match the zone created above.
         - --provider=azure
         - --azure-resource-group=tesis-rg # (optional) use the DNS zones from the specific resource group
+        - --log-level=debug
         volumeMounts:
         - name: azure-config-file
           mountPath: /etc/kubernetes
