@@ -18,7 +18,7 @@ spec:
               number: 80
         path: /
         pathType: Prefix
-  - host: appr.amordemaria.store
+  - host: app.amordemaria.store
     http:
       paths:
       - backend:
