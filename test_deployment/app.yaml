@@ -2,16 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web
+  name: my-nginx
 spec:
-  replicas: 5
+  selector:
+    matchLabels:
+      run: my-nginx
+  replicas: 2
   template:
     metadata:
       labels:
-        app: web
+        run: my-nginx
     spec:
       containers:
-      - name: web
+      - name: my-nginx
         image: nginx
         ports:
         - containerPort: 80
@@ -19,11 +22,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: my-nginx
+  labels:
+    run: my-nginx
 spec:
-  type: LoadBalancer
   ports:
   - port: 80
+    protocol: TCP
   selector:
-    app: web
+    run: my-nginx
 
